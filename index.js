@@ -21,14 +21,18 @@ app.set('layout', __dirname+'/views/layout/main.ejs')
 app.set("view engine", "ejs");
 app.use(express.urlencoded({extended:false}));
 
+
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
-
 app.use(express.static(path.join(__dirname+'/public')));
 
 app.use('/', require('./routes/index'));
+app.use('/auth', require('./routes/auth'));
+app.use('/dashboard', require('./routes/dashboard'));
+app.use('/blog', require('./routes/blog'));
+app.use('/course', require('./routes/course'));
 
 app.listen(PORT, () => {
     console.log("Server started at port", PORT);
