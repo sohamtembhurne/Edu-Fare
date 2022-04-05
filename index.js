@@ -28,6 +28,8 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname+'/public')));
 
+app.use('/', require('./routes/index'));
+
 app.listen(PORT, () => {
     console.log("Server started at port", PORT);
 });
