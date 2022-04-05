@@ -1,0 +1,209 @@
+<style>
+    * {
+        font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    }
+     
+    #sbody img {
+        max-width: 100%;
+        max-height: 100vh;
+    }
+
+    div a {
+        color: white;
+
+    }
+
+    .auth {
+        background: rgb(182, 178, 178);
+        padding: 5px;
+        padding-right: 8px;
+        padding-left: 8px;
+        border-radius: 5px;
+        color: rgb(94, 94, 94);
+        transition: all 0.25s;
+    }
+
+    .auth:hover {
+        box-shadow: 0px 0px 7px grey;
+        color: black;
+    }
+
+    .blogc {
+        border: 2px solid rgb(255, 223, 174);
+        border-radius: 10px;
+        background-color: rgb(255, 245, 231);
+        box-shadow: 0px 3px 4px rgb(202, 202, 202);
+        transition: all 0.3s;
+    }
+
+    .blogc:hover {
+        background-color: rgb(255, 251, 246);
+        box-shadow: 0px 5px 8px rgb(202, 202, 202);
+    }
+
+    .content {
+        max-height: 500px;
+        overflow: hidden;
+        overflow-y: scroll;
+    }
+
+    ::-webkit-scrollbar {
+        width: 7px;
+    }
+
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+        transition: all 0.2s;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    .logout {
+        transition: all 0.2s;
+        border: 0px;
+    }
+
+    .logout:hover {
+        background: grey;
+        color: white;
+        text-decoration: bold;
+        border-radius: 5px;
+    }
+
+    .hh {
+        overflow: hidden;
+        margin: 10px auto;
+        width: 80%;
+    }
+
+    .btn-delpost {
+        transition: all 0.2s;
+    }
+
+    .btn-delpost:hover {
+        transform: scale(1.3);
+    }
+
+    .my-btn {
+        background-color: #0f3292;
+        padding: 12px 15px 12px 15px;
+        border-radius: 1rem;
+        transition: all 300ms;
+    }
+
+    .my-btn:hover {
+        background-color: #374f91;
+    }
+</style>
+
+<div class="hero-wrap js-fullheight">
+    <div class="overlay"></div>
+    <div id="particles-js"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
+            <div class="col-md-6 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+                <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
+                    <span>Available Courses</span>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-5">
+            <div class="col-md-7 text-center heading-section ftco-animate">
+
+                <h2>Available Courses</h2>
+                <div class="container d-flex justify-content-center">
+                    <div class="my-btn row justify-content-center align-self-center">
+                        <a style="color: white; font-size: 20px;" href="/course/add" title="Add new Course">Add
+                            Course <i class="fa fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <% if (course.length==0) { %>
+                <h1
+                    style="color: black; text-align: center; border-radius: 5%; margin: auto; width: 40%; padding: 50px; border:5px solid #ee76ad; background-color: #ee76ad; color: white;">
+                    No Courses Found
+                </h1>
+                <% } else { %>
+                    <% for(var i=0; i < course.length; i++) { %>
+                        <div class="col-md-4 ftco-animate">
+                            <div class="blog-entry">
+                                <a href="/course/expand/<%= course[i]['cid'] %>" class="block-20"
+                                    style="background-image: url(<%= course[i]['banner'] %>);">
+                                </a>
+                                <div class="text p-4 d-block">
+                                    <div class="meta mb-3">
+                                        <div>Duration: <%= course[i]['duration'] %>
+                                        </div>
+                                        <div>Course Id: <%= course[i]['cid'] %>
+                                        </div>
+
+                                    </div>
+                                    <h3 class="heading"><a href="/course/expand/<%= course[i]['cid'] %>">
+                                            <%= course[i]["name"] %>
+                                        </a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                            <% } %>
+        </div>
+    </div>
+    <hr>
+    <nav aria-label="...">
+        <ul class="pagination justify-content-center">
+
+            <li class="page-item"><a class="page-link" href="/course?page=1">&laquo;</a></li>
+            <li class="page-item">
+                <a class="page-link" href="/course?page=<%= Math.max(1, (page-1))%>">&larr;</a>
+            </li>
+
+            <li class="page-item active">
+                <span class="page-link">
+                    <%= page%>
+                        <span class="sr-only">(current)</span>
+                </span>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="/course?page=<%= Math.min( last, (page+1))%>">&rarr;</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="/course?page=<%= last %>">&raquo;</a></li>
+
+        </ul>
+    </nav>
+    <div class="page-info text-center" style="color: rgb(163, 163, 163); font-size: 15px;">
+        Showing Page
+        <%= page %> of
+            <%= last %>
+    </div>
+</section>
+
+<script>
+    var remove = (e) => {
+        console.log(e.id);
+        $.ajax({
+            type: "GET",
+            url: '/course/remove/',
+            success: (res) => {
+                console.log(res);
+                window.location.replace('/course/?page=1');
+            },
+            error: (err) => {
+                console.log(err);
+            }
+        })
+    }
+</script>
