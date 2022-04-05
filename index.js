@@ -16,13 +16,17 @@ connectDB();
 
 var PORT = process.env.PORT || 4000;
 
-
+app.use(expressLayouts)
+app.set('layout', __dirname+'/views/layout/main.ejs')
+app.set("view engine", "ejs");
+app.use(express.urlencoded({extended:false}));
 
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
 
+app.use(express.static(path.join(__dirname+'/public')));
 
 app.listen(PORT, () => {
     console.log("Server started at port", PORT);
