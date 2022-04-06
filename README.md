@@ -33,3 +33,5 @@ The website is running at localhost:4000
 1. Extend JavaScript (EJS)
 2. Bootstrap 4
 3. JavaScript
+
+Youtube video link: https://youtu.be/Ind8-Xt52HQ
