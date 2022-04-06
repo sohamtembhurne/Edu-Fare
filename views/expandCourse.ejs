@@ -1,0 +1,84 @@
+<style>
+    * {
+        margin: 0%;
+        padding: 0%;
+        font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    }
+
+    table {
+        background-color: white;
+        font-family: arial, sans-serif;
+        border-radius: 1rem;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    table a {
+        text-decoration: none;
+    }
+
+    table a:hover {
+        color: black;
+    }
+
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    .container {
+        background-color: rgb(253, 240, 220);
+        border-radius: 1rem;
+        width: 90vw;
+    }
+</style>
+
+<div class="container" style="margin: 50px auto;padding:20px">
+    <h1>
+        <%= course.name %>
+    </h1>
+
+    <div id="blog-status">Course ID :
+        <%= course.cid %>
+
+    </div>
+    <div id="blog-status">Course Duration :
+        <%= course.duration %>
+    </div>
+    <div id="description" style="margin: 5px">
+        <%= course.description %>
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <th>Blog Name</th>
+                <th>Description</th>
+                <th>By</th>
+            </tr>
+            <% for(let i=0;i<blog.length;i++){ %>
+                <tr>
+                    <td>
+                        <a href="/blog/expand/<%= blog[i]['mid'] %>">
+                            <%= blog[i]['heading'] %>
+                        </a>
+                    </td>
+                    <td>
+                        <%= blog[i]['description'] %>
+                    </td>
+                    <td>
+                        <%= blog[i]['username'] %>
+                    </td>
+                </tr>
+                <% } %>
+        </table>
+    </div>
+
+
+</div>
